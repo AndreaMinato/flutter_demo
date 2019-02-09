@@ -13,6 +13,9 @@ class NavigationDrawerDemo extends StatefulWidget {
 class NavigationDrawerState extends State<NavigationDrawerDemo> {
   int _selectedIndex = 0;
 
+  final GlobalKey<ScaffoldState> _endScaffoldKey =
+      new GlobalKey<ScaffoldState>();
+
   final drawerItems = [
     new DrawerItem("Aeroplane", Icons.local_airport),
     new DrawerItem("Pizza", Icons.local_pizza),
@@ -41,7 +44,7 @@ class NavigationDrawerState extends State<NavigationDrawerDemo> {
   Widget build(BuildContext context) {
     var drawerOptions = <Widget>[];
     drawerOptions.add(Container(
-      height: 80,
+
       decoration: BoxDecoration(color: Colors.teal),
       child: DrawerHeader(
         child: Text('Drawer Header'),
@@ -61,12 +64,28 @@ class NavigationDrawerState extends State<NavigationDrawerDemo> {
     }
 
     return new Scaffold(
+        key: _endScaffoldKey,
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(56.0),
           child: AppBar(
+            leading: Builder(
+              builder: (context) => IconButton(
+                    icon: new Icon(Icons.settings),
+                    onPressed: () => Scaffold.of(context).openDrawer(),
+                  ),
+            ),
             title: new Text("Navigation Drawer"),
+            actions: <Widget>[
+              // action button
+              IconButton(
+                  icon: Icon(Icons.local_airport),
+                  onPressed: () => _endScaffoldKey.currentState.openEndDrawer())
+            ],
           )),
       drawer: Drawer(
+        child: ListView(padding: EdgeInsets.zero, children: drawerOptions),
+      ),
+      endDrawer: Drawer(
         child: ListView(padding: EdgeInsets.zero, children: drawerOptions),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
