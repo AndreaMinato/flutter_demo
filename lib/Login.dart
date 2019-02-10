@@ -15,8 +15,10 @@ class _LoginState extends State<Login> {
   String _password = "";
   bool _rememberMe = false;
   bool _passwordVisible = true;
+  bool _isLoading = false;
 
   void rememberMeChanged(bool value) {
+    setState(() => _isLoading = value);
     setState(() => _rememberMe = value);
   }
 
@@ -66,7 +68,9 @@ class _LoginState extends State<Login> {
                         _passwordVisible
                             ? Icons.visibility
                             : Icons.visibility_off,
-                        color: Theme.of(context).primaryColorDark,
+                        color: Theme
+                            .of(context)
+                            .primaryColorDark,
                       ),
                       onPressed: () {
                         setState(() {
@@ -83,35 +87,39 @@ class _LoginState extends State<Login> {
                   onChanged: rememberMeChanged,
                   value: _rememberMe,
                   controlAffinity:
-                      ListTileControlAffinity.leading, //  <-- leading Checkbox
+                  ListTileControlAffinity.leading, //  <-- leading Checkbox
                 ),
-                RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(10.0)),
-                  onPressed: performLogin,
-                  textColor: Colors.white,
-                  color: Colors.orange,
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 100.0, vertical: 20.0),
-                  child: Text(
-                    "Login",
-                  ),
-                ),
-                FlatButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      new MaterialPageRoute(builder: (context) {
-                        return ForgotPassword();
-                      }),
-                    );
-                  },
-                  textColor: Colors.blueAccent,
-                  color: Colors.transparent,
-                  child: Text(
-                    "Forgot password?",
-                  ),
-                ),
+                AbsorbPointer(
+                    absorbing: _isLoading,
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(10.0)),
+                      onPressed: performLogin,
+                      textColor: Colors.white,
+                      color: Colors.orange,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 100.0, vertical: 20.0),
+                      child: _isLoading ? CircularProgressIndicator() : Text(
+                        "Login",
+                      ),
+                    )),
+                AbsorbPointer(
+                    absorbing: _isLoading,
+                    child: FlatButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          new MaterialPageRoute(builder: (context) {
+                            return ForgotPassword();
+                          }),
+                        );
+                      },
+                      textColor: Colors.blueAccent,
+                      color: Colors.transparent,
+                      child: Text(
+                        "Forgot password?",
+                      ),
+                    )),
               ],
             )));
   }
