@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'Home.dart';
+import 'Login.dart';
 
 void main() => runApp(new MyApp());
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
         theme: new ThemeData(
           primarySwatch: Colors.teal,
         ),
-        home: new HomeScreen(title: 'Flutter Demo'),
+        home: new Login(),
       ),
     );
   }

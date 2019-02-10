@@ -44,9 +44,9 @@ class ButtonDemoState extends State<ButtonDemo> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   new RaisedButton(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(18.0),
                     textColor: Colors.white,
-                    color: Colors.blue,
+                    color: Colors.green,
                     onPressed: addNumbers,
                     child: new Text("Add"),
                   ),
@@ -54,7 +54,7 @@ class ButtonDemoState extends State<ButtonDemo> {
                     onPressed: subtractNumbers,
                     textColor: Colors.white,
                     color: Colors.red,
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(18.0),
                     child: new Text(
                       "Subtract",
                     ),
