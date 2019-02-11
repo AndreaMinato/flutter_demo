@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'DrawerItem.dart';
 import 'FirstScreen.dart';
 
+import 'electrolux_icons_icons.dart';
+
 class NavigationDrawerDemo extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -44,7 +46,6 @@ class NavigationDrawerState extends State<NavigationDrawerDemo> {
   Widget build(BuildContext context) {
     var drawerOptions = <Widget>[];
     drawerOptions.add(Container(
-
       decoration: BoxDecoration(color: Colors.teal),
       child: DrawerHeader(
         child: Text('Drawer Header'),
@@ -64,29 +65,27 @@ class NavigationDrawerState extends State<NavigationDrawerDemo> {
     }
 
     return new Scaffold(
-        key: _endScaffoldKey,
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(56.0),
-          child: AppBar(
-            leading: Builder(
-              builder: (context) => IconButton(
-                    icon: new Icon(Icons.settings),
-                    onPressed: () => Scaffold.of(context).openDrawer(),
-                  ),
-            ),
+      key: _endScaffoldKey,
+      appBar: AppBar(
+
             title: new Text("Navigation Drawer"),
             actions: <Widget>[
               // action button
               IconButton(
-                  icon: Icon(Icons.local_airport),
+                  icon: Icon(ElectroluxIcons.appliances),
+                  onPressed: () => _endScaffoldKey.currentState.openEndDrawer()),
+              IconButton(
+                  icon: Icon(ElectroluxIcons.arrow_right),
                   onPressed: () => _endScaffoldKey.currentState.openEndDrawer())
             ],
-          )),
+          ),
       drawer: Drawer(
         child: ListView(padding: EdgeInsets.zero, children: drawerOptions),
       ),
       endDrawer: Drawer(
-        child: ListView(padding: EdgeInsets.zero, children: drawerOptions),
+        child: Center(
+          child: Text("WTF!"),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(

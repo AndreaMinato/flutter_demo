@@ -96,7 +96,7 @@ class _LoginState extends State<Login> {
                           borderRadius: new BorderRadius.circular(10.0)),
                       onPressed: performLogin,
                       textColor: Colors.white,
-                      color: Colors.orange,
+                      color: Colors.blue,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 100.0, vertical: 20.0),
                       child: _isLoading ? CircularProgressIndicator() : Text(
