@@ -45,12 +45,12 @@ class NavigationDrawerState extends State<NavigationDrawerDemo> {
   @override
   Widget build(BuildContext context) {
     var drawerOptions = <Widget>[];
-    drawerOptions.add(Container(
-      decoration: BoxDecoration(color: Colors.teal),
-      child: DrawerHeader(
-        child: Text('Drawer Header'),
-      ),
-    ));
+    drawerOptions.add(
+      UserAccountsDrawerHeader(accountName: Text("Ciao"), accountEmail: Text("Miao"))
+//      DrawerHeader(
+//        child: Text('Drawer Header'),
+//      ),
+    );
     for (var i = 0; i < drawerItems.length; i++) {
       var d = drawerItems[i];
       drawerOptions.add(ListTile(
@@ -67,18 +67,17 @@ class NavigationDrawerState extends State<NavigationDrawerDemo> {
     return new Scaffold(
       key: _endScaffoldKey,
       appBar: AppBar(
-
-            title: new Text("Navigation Drawer"),
-            actions: <Widget>[
-              // action button
-              IconButton(
-                  icon: Icon(ElectroluxIcons.appliances),
-                  onPressed: () => _endScaffoldKey.currentState.openEndDrawer()),
-              IconButton(
-                  icon: Icon(ElectroluxIcons.arrow_right),
-                  onPressed: () => _endScaffoldKey.currentState.openEndDrawer())
-            ],
-          ),
+        title: new Text("Navigation Drawer"),
+        actions: <Widget>[
+          // action button
+          IconButton(
+              icon: Icon(ElectroluxIcons.appliances),
+              onPressed: () => _endScaffoldKey.currentState.openEndDrawer()),
+          IconButton(
+              icon: Icon(ElectroluxIcons.arrow_right),
+              onPressed: () => _endScaffoldKey.currentState.openEndDrawer())
+        ],
+      ),
       drawer: Drawer(
         child: ListView(padding: EdgeInsets.zero, children: drawerOptions),
       ),
